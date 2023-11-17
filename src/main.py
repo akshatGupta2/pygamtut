@@ -16,27 +16,27 @@ def main():
         FPS.tick(60)
         DISPLAY.fill('black')
         DISPLAY.blit(SURFACE,tuple(l))
+        keys=pygame.key.get_pressed()
+        if keys[pygame.K_UP]:
+                DISPLAY.fill('black')
+                DISPLAY.blit(SURFACE,tuple(l))
+                l[1]-=10
+        elif keys[pygame.K_DOWN]:
+                DISPLAY.fill('black')
+                DISPLAY.blit(SURFACE,tuple(l))
+                l[1]+=10
+        elif keys[pygame.K_LEFT]:
+                DISPLAY.fill('black')
+                DISPLAY.blit(SURFACE,tuple(l))
+                l[0]-=10
+        elif keys[pygame.K_RIGHT]:
+                DISPLAY.fill('black')
+                DISPLAY.blit(SURFACE,tuple(l))
+                l[0]+=10
         for event in pygame.event.get():
             if event.type==pygame.locals.QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type==pygame.locals.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    DISPLAY.fill('black')
-                    DISPLAY.blit(SURFACE,tuple(l))
-                    l[1]-=10
-                elif event.key == pygame.K_DOWN:
-                    DISPLAY.fill('black')
-                    DISPLAY.blit(SURFACE,tuple(l))
-                    l[1]+=10
-                elif event.key == pygame.K_LEFT:
-                    DISPLAY.fill('black')
-                    DISPLAY.blit(SURFACE,tuple(l))
-                    l[0]-=10
-                elif event.key == pygame.K_RIGHT:
-                    DISPLAY.fill('black')
-                    DISPLAY.blit(SURFACE,tuple(l))
-                    l[0]+=10
         pygame.display.update()
 
 
