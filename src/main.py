@@ -1,44 +1,46 @@
 import pygame
-import pygame.locals
 import sys
 
-def main():
-    pygame.init()
-    DISPLAY=pygame.display.set_mode((800,600))
-    DISPLAY.set_alpha(5)
-    pygame.display.set_caption("Hello Window 2")
-    SURFACE=pygame.Surface((200,100))
-    SURFACE.fill('red')
-    FPS=pygame.time.Clock()
-    siz=pygame.display.get_window_size()
-    l=[siz[0]/2-100,siz[1]/2-50]
-    while True:
-        FPS.tick(60)
-        DISPLAY.fill('black')
-        DISPLAY.blit(SURFACE,tuple(l))
-        keys=pygame.key.get_pressed()
-        if keys[pygame.K_UP]:
-                DISPLAY.fill('black')
-                DISPLAY.blit(SURFACE,tuple(l))
-                l[1]-=10
-        elif keys[pygame.K_DOWN]:
-                DISPLAY.fill('black')
-                DISPLAY.blit(SURFACE,tuple(l))
-                l[1]+=10
-        elif keys[pygame.K_LEFT]:
-                DISPLAY.fill('black')
-                DISPLAY.blit(SURFACE,tuple(l))
-                l[0]-=10
-        elif keys[pygame.K_RIGHT]:
-                DISPLAY.fill('black')
-                DISPLAY.blit(SURFACE,tuple(l))
-                l[0]+=10
-        for event in pygame.event.get():
-            if event.type==pygame.locals.QUIT:
-                pygame.quit()
-                sys.exit()
-        pygame.display.update()
 
+def main():
+        pygame.display.init()
+        pygame.font.init()
+        
+        DISPLAY=pygame.display.set_mode((800,400))
+        CLOCK=pygame.time.Clock()
+        pygame.display.set_caption("Hello")
+        
+        # creating the Sky
+        Sky=pygame.image.load("res\\img\\Sky.png").convert()
+        # blitting image on the surface
+        DISPLAY.blit(Sky,(0,0))
+        
+        # creating the ground
+        Ground=pygame.image.load("res\\img\\ground.png").convert()
+        # blitting the ground on dispay just below the sky
+        DISPLAY.blit(Ground,(0,300))
+        
+        # loading font
+        Ptext=pygame.font.Font("res\\fonts\\Pixeltype.ttf",50)
+        
+        # creating the surface for the font
+        helloT=Ptext.render("Hello World", False, pygame.Color(125,125,125))
+        # blitting onto the Sky
+        DISPLAY.blit(helloT, (50,50))
+        
+        # importing the snail image
+        snail_surf=pygame.image.load("res\\img\\snail1.png")
+
+        # this is the game loop
+        while True:
+                CLOCK.tick(60)
+                DISPLAY.blit(snail_surf,(600,250))
+                
+                for event in pygame.event.get():
+                        if event.type==pygame.QUIT:
+                                pygame.quit()
+                                sys.exit()
+                pygame.display.update()
 
 if __name__=="__main__":
-    main()
+        main()
